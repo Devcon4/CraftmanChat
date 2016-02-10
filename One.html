@@ -1,0 +1,77 @@
+<head>
+    <title>Craftman Chat</title>
+</head>
+
+<!--This is my layout template. Its the parent view basically.-->
+<template name="Parent">
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <!--Meteor has spacebars, an expansion of handlebars. But I can't do expressions in html.-->
+                {{#if currentUser}}
+                    <p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link">{{> loginButtons}}</a></p>
+                {{else}}
+                    <p class="navbar-text navbar-right"><a href="#" class="navbar-link">{{> loginButtons}}</a></p>
+                {{/if}}
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+            <div class="row">
+                <h3>Craftman Chat</h3>
+            </div>
+            <!--Using a {{> [my template]}} creates a new instance of a template. -->
+            <!-- currentUser is apart of the accounts-ui package, its true if the current user is logged in. -->
+            {{#if currentUser}}
+            
+                {{> NewComment}}
+                
+                <br/>
+                
+                <!--Similar to an ng-repeat. I can do an else operator, which shows up if the array/collection is empty. -->
+                {{#each comments}}
+                    {{> Card}}
+                {{else}}            
+                    <div class="row">
+                        <h4 class="col-lg-12">No more comments...</h4>
+                    </div>
+                {{/each}}
+            {{else}}
+                <div class="row">
+                    <h4 class="col-lg-12">Please login...</h4>
+                </div>
+            {{/if}}
+        </div>
+        <div class="col-lg-2"></div>
+    </div>
+</template>
+
+<!-- Each template is a chunk of html that we can tie js to. They can be very lightweight or bulky.-->
+<template name="NewComment">
+    <form class="row">
+        <div class="col-lg-12">
+            <div class="input-group input-group-lg">
+                <input type="text" class="form-control" name="commentBox" placeholder="Enter a comment...">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit">Post</button>
+                </span>
+            </div>
+        </div>
+    </form>
+</template>
+
+<!--Bootstrap for design. -->
+<template name="Card">
+    <div class="row jumbotron">
+        <div class="row">
+            <!-- Spacebars without a > signals that its a helper-->
+            <h4 class="col-lg-4">{{Username}}</h4>
+            <span class="text-right">{{rightNow}}</span>
+        </div>
+        <p class="row">{{Text}}</p>
+    </div>
+</template>
