@@ -30,8 +30,10 @@ if (Meteor.isClient) {
             var displayName;
             if(thisUser.username){
                 displayName = thisUser.username;
-            } else if(thisUser.emails.length > 0){
+            } else if(thisUser.emails){
                 displayName = thisUser.emails[0].address;
+            } else if(thisUser.profile){
+              displayName = thisUser.profile.name;  
             } else {
                 displayName = 'Anonymous';
             }
