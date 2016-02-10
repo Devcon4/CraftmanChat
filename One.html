@@ -18,6 +18,8 @@
         </div>
     </nav>
 
+<!--Meteor uses DDP to enable three way binding. Its like websockets on steroids.-->
+
     <div class="container-fluid">
         <div class="col-lg-2"></div>
         <div class="col-lg-8">
@@ -68,7 +70,7 @@
 <template name="Card">
     <div class="row jumbotron">
         <div class="row">
-            <!-- Spacebars without a > signals that its a helper-->
+            <!-- Spacebars without a > signals that its a helper.-->
             <h4 class="col-lg-4">{{Username}}</h4>
             <span class="text-right">{{rightNow}}</span>
         </div>

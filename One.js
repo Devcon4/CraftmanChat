@@ -18,6 +18,8 @@ if (Meteor.isClient) {
       rightNow() { return new Date() }
   });
   
+  //I can also do Meteor.methods to set global methods.
+  
   //Templates can have events, notation [event domElement].
   Template.Parent.events({
       'submit form': function(event, template){
@@ -67,5 +69,6 @@ if (Meteor.isServer) {
 //Meteor doesn't have its own router, I like Iron router, of flow router.
 //Router
 Router.configure({
+    //In iron I can configure a default template. I never made a body tag, I let meteor do that for me.
   layoutTemplate: 'Parent'
 });
